@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="no-js"> 
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Job Application Form</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+        <link rel="stylesheet" href="./index.css">
+        <link href="https://unpkg.com/vuetify/dist/vuetify.min.css" rel="stylesheet">
+        <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/f/f1/Vue.png" type="image/gif" sizes="16x16">
+    </head>
+    <body>
+      <div id="app">
+        <v-app id="job-applicaiton-form">
+          <v-container grid-list-xl text-xs-center>
+            <v-layout>
+              <v-flex xs10 offset-xs1>
+                <h1 class="display-3">Job Applicaiton Form</h1>
+              </v-flex>
+            </v-layout>
+            <v-layout row wrap>
+              <v-flex xs3 offset-xs3>
+                <v-btn block large round color="success">Front End Designer</v-btn>
+              </v-flex>
+              <v-flex xs3>
+                  <v-btn block large round color="blue" class="white--text">UX/UI Designer</v-btn>
+                </v-flex>
+            </v-layout>
+            <v-layout row wrap>
+              <!-- <v-flex xs6 offset-xs3>
+                
+              </v-flex> -->
+              <v-flex xs6 offset-xs3>
+                <v-stepper v-model="step" vertical>
+                    <v-stepper-step step="1" :complete="step > 1" editable>
+                      Personal Information
+                    </v-stepper-step>
+                    <v-stepper-content step="1">
+                        <v-text-field
+                        label="Name"
+                        v-model="name"
+                        type="text"
+                        required
+                      ></v-text-field>
+                      <v-text-field
+                        label="E-mail"
+                        v-model="email"
+                        type="email"
+                        required
+                      ></v-text-field>
+                      <v-text-field
+                        label="Contact Number"
+                        v-model="contact_number"
+                        required
+                      ></v-text-field>
+                      <v-btn color="primary" @click.native="step = 2">Continue</v-btn>
+                    </v-stepper-content>
+                    <v-stepper-step step="2" :complete="step > 2" editable>
+                      Previous Experience
+                    </v-stepper-step>
+                    <v-stepper-content step="2">
+                        <v-text-field
+                        label="Name"
+                        v-model="name"
+                        required
+                      ></v-text-field>
+                      <v-text-field
+                        label="From Year"
+                        v-model="from_year"
+                        type="number"
+                        min="1990"
+                        required
+                      ></v-text-field>
+                      <v-text-field
+                        label="To Year"
+                        v-model="to_year"
+                        required
+                        type="number"
+                        max="2018"
+                      ></v-text-field>
+                      <v-switch
+                        label="Currently Working"
+                        v-model="currently_working"
+                      ></v-switch>
+                      <v-text-field
+                        label="Skills Earned"
+                        v-model="skills_earned"
+                        required
+                        type="text"
+                      ></v-text-field>
+                      <v-text-field
+                        label="Description"
+                        v-model="description"
+                        required
+                        type="text"
+                      ></v-text-field>
+                      <v-text-field
+                        label="Reference Link"
+                        v-model="reference_link"
+                        required
+                        type="text"
+                      ></v-text-field>
+                      <v-btn icon title="Add More Previous Experience">
+                        <v-icon>add</v-icon>
+                      </v-btn>
+                      <v-btn color="primary" @click.native="step = 3">Continue</v-btn>
+                    </v-stepper-content>
+                    <v-stepper-step step="3" :complete="step > 3" editable>
+                      Portfolio
+                    </v-stepper-step>
+                    <v-stepper-content step="3">
+                      <v-btn round color="red" class="white--text">Upload Portfolio</v-btn>
+                      <v-text-field
+                        label="Year"
+                        v-model="year"
+                        required
+                        type="text"
+                      ></v-text-field>
+                      <v-text-field
+                        label="Skills Used"
+                        v-model="skills_used"
+                        required
+                        type="text"
+                      ></v-text-field>
+                      <v-btn color="primary" @click.native="step = 4" >Continue</v-btn>
+                    </v-stepper-content>
+                    <v-stepper-step step="4" editable>
+                      Curriculum Vitae
+                    </v-stepper-step>
+                    <v-stepper-content step="4">
+                        <v-btn round color="red" class="white--text">Upload CV</v-btn>
+                        <v-btn block color="success">Finish</v-btn>
+                    </v-stepper-content>
+                  </v-stepper>
+              </v-flex>
+            </v-layout>
+          </v-container>
+        </v-app>
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuetify/dist/vuetify.js"></script>    
+    <script src="./index.js"></script>
+    </body>
+</html>
