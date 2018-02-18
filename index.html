@@ -17,125 +17,143 @@
           <v-container grid-list-xl text-xs-center>
             <v-layout>
               <v-flex xs10 offset-xs1>
-                <h1 class="display-3">Job Applicaiton Form</h1>
+                <h1 class="display-1">Job Application Form</h1>
               </v-flex>
             </v-layout>
             <v-layout row wrap>
-              <v-flex xs3 offset-xs3>
-                <v-btn block large round color="success">Front End Designer</v-btn>
-              </v-flex>
-              <v-flex xs3>
-                  <v-btn block large round color="blue" class="white--text">UX/UI Designer</v-btn>
+              <transition name="slide-fade" mode="out-in">
+                <v-flex xs12 v-if="!checkSelected">
+                  <div class="display-3 mt-5">Apply For</div>
                 </v-flex>
-            </v-layout>
-            <v-layout row wrap>
-              <!-- <v-flex xs6 offset-xs3>
-                
-              </v-flex> -->
-              <v-flex xs6 offset-xs3>
-                <v-stepper v-model="step" vertical>
-                    <v-stepper-step step="1" :complete="step > 1" editable>
-                      Personal Information
-                    </v-stepper-step>
-                    <v-stepper-content step="1">
-                        <v-text-field
-                        label="Name"
-                        v-model="name"
-                        type="text"
-                        required
-                      ></v-text-field>
-                      <v-text-field
-                        label="E-mail"
-                        v-model="email"
-                        type="email"
-                        required
-                      ></v-text-field>
-                      <v-text-field
-                        label="Contact Number"
-                        v-model="contact_number"
-                        required
-                      ></v-text-field>
-                      <v-btn color="primary" @click.native="step = 2">Continue</v-btn>
-                    </v-stepper-content>
-                    <v-stepper-step step="2" :complete="step > 2" editable>
-                      Previous Experience
-                    </v-stepper-step>
-                    <v-stepper-content step="2">
-                        <v-text-field
-                        label="Name"
-                        v-model="name"
-                        required
-                      ></v-text-field>
-                      <v-text-field
-                        label="From Year"
-                        v-model="from_year"
-                        type="number"
-                        min="1990"
-                        required
-                      ></v-text-field>
-                      <v-text-field
-                        label="To Year"
-                        v-model="to_year"
-                        required
-                        type="number"
-                        max="2018"
-                      ></v-text-field>
-                      <v-switch
-                        label="Currently Working"
-                        v-model="currently_working"
-                      ></v-switch>
-                      <v-text-field
-                        label="Skills Earned"
-                        v-model="skills_earned"
-                        required
-                        type="text"
-                      ></v-text-field>
-                      <v-text-field
-                        label="Description"
-                        v-model="description"
-                        required
-                        type="text"
-                      ></v-text-field>
-                      <v-text-field
-                        label="Reference Link"
-                        v-model="reference_link"
-                        required
-                        type="text"
-                      ></v-text-field>
-                      <v-btn icon title="Add More Previous Experience">
-                        <v-icon>add</v-icon>
-                      </v-btn>
-                      <v-btn color="primary" @click.native="step = 3">Continue</v-btn>
-                    </v-stepper-content>
-                    <v-stepper-step step="3" :complete="step > 3" editable>
-                      Portfolio
-                    </v-stepper-step>
-                    <v-stepper-content step="3">
-                      <v-btn round color="red" class="white--text">Upload Portfolio</v-btn>
-                      <v-text-field
-                        label="Year"
-                        v-model="year"
-                        required
-                        type="text"
-                      ></v-text-field>
-                      <v-text-field
-                        label="Skills Used"
-                        v-model="skills_used"
-                        required
-                        type="text"
-                      ></v-text-field>
-                      <v-btn color="primary" @click.native="step = 4" >Continue</v-btn>
-                    </v-stepper-content>
-                    <v-stepper-step step="4" editable>
-                      Curriculum Vitae
-                    </v-stepper-step>
-                    <v-stepper-content step="4">
-                        <v-btn round color="red" class="white--text">Upload CV</v-btn>
-                        <v-btn block color="success">Finish</v-btn>
-                    </v-stepper-content>
-                  </v-stepper>
+              </transition>
+              <v-flex hidden-xs-only sm1 md2></v-flex>
+              <v-flex xs6 sm5 md4 v-for="(post, index) in applicant.apply_for" :key="index">
+                <v-btn 
+                  block large round
+                  :color="getColor(post.check, post.color)"
+                  class="white--text"
+                  @click="applied(post)"
+                  >
+                    <v-icon left v-if="post.check">check</v-icon>
+                    {{post.name}}
+                  </v-btn>
               </v-flex>
             </v-layout>
+            <transition name="slide-fade" mode="out-in">
+              <v-layout row wrap v-if="checkSelected">
+                <v-flex xs12 sm10 md8 offset-sm1 offset-md2>
+                  <v-stepper v-model="step" vertical :color="color">
+                      <v-stepper-step step="1" :complete="step > 1" editable>
+                        Personal Information
+                      </v-stepper-step>
+                      <v-stepper-content step="1">
+                        <v-text-field
+                          :color="color"
+                          label="Name"
+                          v-model="applicant.name"
+                          type="text"
+                          required
+                        ></v-text-field>
+                        <v-text-field
+                          :color="color"
+                          label="E-mail"
+                          v-model="applicant.email"
+                          type="email"
+                          required
+                        ></v-text-field>
+                        <v-text-field
+                          :color="color"
+                          label="Contact Number"
+                          v-model="applicant.contact_number"
+                          required
+                        ></v-text-field>
+                        <v-btn color="primary" @click.native="step = 2">Continue</v-btn>
+                      </v-stepper-content>
+                      <v-stepper-step step="2" :complete="step > 2" editable>
+                        Previous Experience
+                      </v-stepper-step>
+                      <v-stepper-content step="2">
+                        <template v-for="preJob in applicant.previous_jobs">
+                          <v-text-field
+                            :color="color"
+                            label="Job Place"
+                            v-model="preJob.name"
+                          ></v-text-field>
+                          <v-text-field
+                            :color="color"
+                            label="From Year"
+                            v-model="preJob.from_year"
+                            type="number"
+                            min="1990"
+                          ></v-text-field>
+                          <v-text-field
+                            :color="color"
+                            label="To Year"
+                            v-model="preJob.to_year"
+                            type="number"
+                            max="2018"
+                          ></v-text-field>
+                          <v-switch
+                            label="Currently Working"
+                            v-model="preJob.currently_working"
+                          ></v-switch>
+                          <v-text-field
+                            :color="color"
+                            label="Skills Earned"
+                            v-model="preJob.skills_earned"
+                            type="text"
+                          ></v-text-field>
+                          <v-text-field
+                            :color="color"
+                            label="Description"
+                            v-model="preJob.description"
+                            type="text"
+                          ></v-text-field>
+                          <v-text-field
+                            :color="color"
+                            label="Reference Link"
+                            v-model="preJob.reference_link"
+                            type="text"
+                          ></v-text-field>
+                          <v-btn icon title="Add More Previous Experience">
+                            <v-icon>add</v-icon>
+                          </v-btn>
+                        </template>
+                        
+                        <v-btn color="primary" @click.native="step = 3">Continue</v-btn>
+                      </v-stepper-content>
+                      <v-stepper-step step="3" :complete="step > 3" editable>
+                        Portfolio
+                      </v-stepper-step>
+                      <v-stepper-content step="3">
+                        <v-btn block color="red" class="white--text">Upload Portfolio</v-btn>
+                        <v-text-field
+                          :color="color"
+                          label="Year"
+                          v-model="year"
+                          required
+                          type="text"
+                        ></v-text-field>
+                        <v-text-field
+                          :color="color"
+                          label="Skills Used"
+                          v-model="skills_used"
+                          required
+                          type="text"
+                        ></v-text-field>
+                        <v-btn color="primary" @click.native="step = 4" >Continue</v-btn>
+                      </v-stepper-content>
+                      <v-stepper-step step="4" editable>
+                        Curriculum Vitae
+                      </v-stepper-step>
+                      <v-stepper-content step="4">
+                          <v-btn round color="red" class="white--text">Upload CV</v-btn>
+                          <v-btn block color="success">Finish</v-btn>
+                      </v-stepper-content>
+                    </v-stepper>
+                </v-flex>
+              </v-layout>
+            </transition>
           </v-container>
         </v-app>
       </div>
