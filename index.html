@@ -20,7 +20,7 @@
                 <h1 class="display-1">Job Application Form</h1>
               </v-flex>
             </v-layout>
-            <v-layout row wrap>
+            <v-layout row wrap style="z-index: 5">
               <transition name="slide-fade" mode="out-in">
                 <v-flex xs12 v-if="!checkSelected">
                   <div class="display-3 mt-5">Apply For</div>
@@ -39,7 +39,7 @@
                   </v-btn>
               </v-flex>
             </v-layout>
-            <transition name="slide-fade" mode="out-in">
+            <transition name="slide-fade" leave-to-class="slide-fade-leave-to-2" mode="in-out">
               <v-layout row wrap v-if="checkSelected">
                 <v-flex xs12 sm10 md8 offset-sm1 offset-md2>
                   <v-stepper v-model="step" vertical :color="color">
