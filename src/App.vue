@@ -45,4 +45,16 @@ export default {
     bottom: 10px;
     right: 10px;
   }
+  .text-center{
+    text-align: center;
+  }
+  .font-bold{
+    font-weight: bold;
+  }
+  .font-lg{
+    font-size: 2rem;
+  }
+  .mb-1{
+    margin-bottom: 1rem;
+  }
 </style>
