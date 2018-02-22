@@ -1,7 +1,20 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <el-container>
+      <vue-particles
+        color="#212121"
+        :particleOpacity="0.7"
+        linesColor="#424242"
+        shapeType="polygon"
+        >
+      </vue-particles>
+      <router-view/>
+      <el-footer>
+        <div class="powered-by">
+          Powered By, <a href="https::/karigor.io" class="company">Karigor</a>
+        </div>
+      </el-footer>
+    </el-container>
   </div>
 </template>
 
@@ -12,12 +25,24 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+  #app {
+    font-family: "Ubuntu",Arial,sans-serif;
+  }
+  #particles-js {
+    background-image: #fafafa;
+    background-blend-mode: overlay;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 4px;
+    z-index: -1;
+  }
+  .powered-by{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
 </style>

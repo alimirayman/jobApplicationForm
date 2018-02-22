@@ -3,12 +3,20 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+
+// Normalize
+import 'normalize.css/normalize.css'
+
+// Element-UI
 import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 import locale from 'element-ui/lib/locale/lang/en'
 
-Vue.use(ElementUI, {
-  locale
-})
+// Vue Particles
+import VueParticles from 'vue-particles'
+
+Vue.use(ElementUI, { locale })
+Vue.use(VueParticles)
 
 Vue.config.productionTip = false
 
