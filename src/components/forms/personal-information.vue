@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- <h2>Personal Information</h2> -->
+    <h2>Personal Information</h2>
     <el-form :model="form">
       <el-form-item label="Full Name">
         <el-input v-model="form.name" placeholder="Mir Ayman Ali"></el-input>
@@ -33,19 +33,12 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  data () {
-    return {
-      fileList: [],
-      form: {
-        name: '',
-        email: '',
-        contact_number: ''
-      }
-    }
-  },
+  computed: mapGetters({
+    form: 'data'
+  }),
   methods: {
     ...mapActions({
       saveData: 'SAVE_DATA',
