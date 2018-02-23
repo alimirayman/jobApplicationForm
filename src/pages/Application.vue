@@ -6,19 +6,15 @@
           <el-card class="box-card text-center">
             <h1 class="font-lg font-bold">Apply<span v-if="selected">ing</span> for</h1>
             <el-row type="flex" justify="center" :gutter="20" class="row-bg">
-              <el-col :xs="12" :md="10"  v-for="(apply, id) in applyFor" :key="id">
-                <el-button class="checkButton" @click="apply.check = !apply.check" :type="checkType(apply.check)">
+              <el-col  v-for="(apply, id) in applyFor" :key="id">
+                <el-button class="checkButton font-md font-bold" @click="selectType(id)" :type="checkType(apply.check)">
                   {{ apply.name }}
-                  <i class="el-icon-success" v-if="apply.check"></i>
+                  <i class="el-icon-success el-icon-right" v-if="apply.check"></i>
                 </el-button>
               </el-col>
             </el-row>
             <transition name="el-zoom-in-top">
-              <el-button v-if="selected && !checked" round type="danger" @click="nextForm">
-                Select
-                <i class="el-icon-caret-right el-icon-right"></i>
-              </el-button>
-              <applicant-form v-if="selected & checked"></applicant-form>
+              <applicant-form v-if="selected"></applicant-form>
             </transition>
           </el-card>
         </el-col>
@@ -32,12 +28,6 @@ import applicantForm from '../components/forms/wrapper'
 import { mapGetters } from 'vuex'
 
 export default {
-  data () {
-    return {
-      step: 0,
-      checked: false
-    }
-  },
   computed: {
     ...mapGetters([
       'applyFor'
@@ -47,14 +37,17 @@ export default {
     }
   },
   methods: {
-    nextStep () {
-      if (this.step++ > 4) this.step = 0
-    },
     checkType (check) {
       return check ? 'success' : 'primary'
     },
-    nextForm () {
-      this.checked = true
+    selectType (id) {
+      this.applyFor[id].check = !this.applyFor[id].check
+      this.$store.dispatch('SAVE_APPLY_FOR', this.applyFor)
+    }
+  },
+  watch: {
+    selected (val) {
+      if (!val) this.checked = false
     }
   },
   components: {

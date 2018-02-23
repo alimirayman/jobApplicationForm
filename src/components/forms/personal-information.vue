@@ -1,6 +1,20 @@
 <template>
   <div>
-    <h2>Personal Information</h2>
+    <!-- <h2>Personal Information</h2> -->
+    <el-form :model="form">
+      <el-form-item label="Full Name">
+        <el-input v-model="form.name" placeholder="Mir Ayman Ali"></el-input>
+      </el-form-item>
+      <el-form-item label="Email Address">
+        <el-input v-model="form.email" placeholder="ayman@karigor.io"></el-input>
+      </el-form-item>
+      <el-form-item label="Contact Number">
+        <el-input v-model="form.contact_number" placeholder="+8801444444444"></el-input>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="next">Query</el-button>
+      </el-form-item>
+    </el-form>
     <!-- <el-upload
       action="http://159.89.38.56:5202/upload"
       :on-preview="handlePreview"
@@ -19,13 +33,28 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   data () {
     return {
-      fileList: []
+      fileList: [],
+      form: {
+        name: '',
+        email: '',
+        contact_number: ''
+      }
     }
   },
   methods: {
+    ...mapActions({
+      saveData: 'SAVE_DATA',
+      nextStep: 'NEXT_STEP'
+    }),
+    next () {
+      this.saveData(this.form)
+      this.nextStep()
+    },
     handlePreview () {
       console.log('handlePreview')
     },

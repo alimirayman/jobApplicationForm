@@ -44,7 +44,7 @@ const getters = {
     data.cv_link = state.cv_link
     data.portfolio = state.portfolio
     data.previous_jobs = state.previous_jobs
-    data.apply_for = state.apply_for
+    data.apply_for = state.applyFor
     return data
   },
   data: state => state.data,

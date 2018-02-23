@@ -30,7 +30,7 @@ export default {
     font-family: "Raleway",Arial,sans-serif;
   }
   #particles-js {
-    background-image: #fafafa;
+    background-color: #fafafa;
     background-blend-mode: overlay;
     background-size: cover;
     position: fixed;
@@ -53,6 +53,9 @@ export default {
   }
   .font-lg{
     font-size: 2rem;
+  }
+  .font-md{
+    font-size: 1rem;
   }
   .mb-1{
     margin-bottom: 1rem;

@@ -6,10 +6,28 @@ import application from './modules/jobApplication'
 
 Vue.use(Vuex)
 
-const state = {}
-const getters = {}
-const mutations = {}
-const actions = {}
+const state = {
+  step: 0
+}
+const getters = {
+  step: state => state.step
+}
+const mutations = {
+  nextStep (state) {
+    if (++state.step > 3) state.step = 3
+  },
+  prevStep (state) {
+    if (--state.step < 0) state.step = 0
+  }
+}
+const actions = {
+  NEXT_STEP ({commit}) {
+    commit('nextStep')
+  },
+  PREV_STEP ({ commit }) {
+    commit('prevStep')
+  }
+}
 const modules = {
   application
 }
