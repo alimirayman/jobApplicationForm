@@ -9,14 +9,12 @@ const state = {
   cv_link: '',
   apply_for: [
     {
-      name: 'Front End Designer',
-      check: false,
-      color: 'purple darken-1'
+      name: 'Front End Developer',
+      check: false
     },
     {
       name: 'UX/UI Designer',
-      check: false,
-      color: 'orange darken-1'
+      check: false
     }
   ],
   portfolio: [

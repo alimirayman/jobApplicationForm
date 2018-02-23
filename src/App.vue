@@ -2,10 +2,11 @@
   <div id="app">
     <el-container>
       <vue-particles
-        color="#212121"
+        color="#FAFAFA"
         :particleOpacity="0.7"
-        linesColor="#424242"
+        linesColor="#F5F5F5"
         shapeType="polygon"
+        :style="dynamicBackground"
         >
       </vue-particles>
       <router-view/>
@@ -20,7 +21,37 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  data () {
+    return {
+      dynamicColor: '',
+      colors: [
+        '#01579B',
+        '#006064',
+        '#004D40',
+        '#0D47A1',
+        '#1A237E'
+      ]
+    }
+  },
+  computed: {
+    dynamicBackground () {
+      return { backgroundColor: this.dynamicColor }
+    }
+  },
+  methods: {
+    changeColor () {
+      let i = 0
+      let vm = this
+      setInterval(() => {
+        if (++i === this.colors.length) i = 0
+        vm.dynamicColor = vm.colors[i]
+      }, 5000)
+    }
+  },
+  created () {
+    this.changeColor()
+  }
 }
 </script>
 
@@ -30,7 +61,7 @@ export default {
     font-family: "Raleway",Arial,sans-serif;
   }
   #particles-js {
-    background-color: #fafafa;
+    background-color: #01579B;
     background-blend-mode: overlay;
     background-size: cover;
     position: fixed;
@@ -39,9 +70,11 @@ export default {
     right: 0;
     bottom: 0;
     z-index: -1;
+    transition: background 2s ease-in-out;
   }
   .powered-by{
     position: fixed;
+    color: #ffffff;
     bottom: 10px;
     right: 10px;
   }
