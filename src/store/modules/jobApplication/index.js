@@ -26,17 +26,7 @@ const state = {
       skills_used: ''
     }
   ],
-  previous_jobs: [
-    {
-      name: '',
-      from_year: '',
-      to_year: '',
-      currently_working: true,
-      skills_earned: '',
-      descreaption: '',
-      reference_link: ''
-    }
-  ]
+  previous_jobs: []
 }
 const getters = {
   applicant (state) {

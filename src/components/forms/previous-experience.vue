@@ -11,10 +11,10 @@
             <el-input v-model="form.skills_earned" placeholder="Vue, Java, PhotoShop"></el-input>
           </el-form-item>
           <el-form-item label="Descreaption">
-            <el-input v-model="form.skills_earned" placeholder="I worked on..."></el-input>
+            <el-input v-model="form.descreaption" placeholder="I worked on..."></el-input>
           </el-form-item>
           <el-form-item label="Refference Link">
-            <el-input v-model="form.skills_earned" placeholder="https://developers.google.com/ayman"></el-input>
+            <el-input v-model="form.reference_link" placeholder="https://developers.google.com/ayman"></el-input>
           </el-form-item>
           <el-form-item label="Job Timespan">
             <el-date-picker
