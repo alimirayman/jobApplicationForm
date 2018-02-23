@@ -2,15 +2,15 @@
   <div>
     <el-steps :active="step" align-center finish-status="success">
       <el-step title="Personal Info."></el-step>
-      <el-step title="Portfolio"></el-step>
       <el-step title="Experience"></el-step>
+      <el-step title="Portfolio"></el-step>
       <el-step title="CV"></el-step>
     </el-steps>
     <div class="wrapper">
       <el-collapse-transition>
         <personal-information v-if="step === 0"></personal-information>
-        <portfolio v-if="step === 1"></portfolio>
-        <experience v-if="step === 2"></experience>
+        <experience v-if="step === 1"></experience>
+        <portfolio v-if="step === 2"></portfolio>
         <cv v-if="step === 3"></cv>
       </el-collapse-transition>
     </div>

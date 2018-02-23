@@ -41,7 +41,7 @@ export default {
     z-index: -1;
   }
   .powered-by{
-    position: absolute;
+    position: fixed;
     bottom: 10px;
     right: 10px;
   }
