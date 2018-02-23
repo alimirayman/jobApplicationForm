@@ -12,7 +12,7 @@
         <el-input v-model="form.contact_number" placeholder="+8801444444444"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="next">Query</el-button>
+        <el-button type="primary" @click="next">Continue</el-button>
       </el-form-item>
     </el-form>
     <!-- <el-upload

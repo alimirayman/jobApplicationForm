@@ -6,7 +6,7 @@
           <el-card class="box-card text-center">
             <h1 class="font-lg font-bold">Apply<span v-if="selected">ing</span> for</h1>
             <el-row type="flex" justify="center" :gutter="20" class="row-bg">
-              <el-col  v-for="(apply, id) in applyFor" :key="id">
+              <el-col :md="11" v-for="(apply, id) in applyFor" :key="id">
                 <el-button class="checkButton font-md font-bold" @click="selectType(id)" :type="checkType(apply.check)">
                   {{ apply.name }}
                   <i class="el-icon-success el-icon-right" v-if="apply.check"></i>
@@ -64,7 +64,7 @@ export default {
   justify-content: center;
 }
 .checkButton {
-  width: 100%;
+  width: 100%
 }
 .el-row{
   margin: 20px 0;
