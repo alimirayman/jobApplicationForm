@@ -25,9 +25,9 @@ export default {
 </script>
 
 <style>
-  @import url('https://fonts.googleapis.com/css?family=Ubuntu');
+  @import url('https://fonts.googleapis.com/css?family=Raleway');
   #app {
-    font-family: "Ubuntu",Arial,sans-serif;
+    font-family: "Raleway",Arial,sans-serif;
   }
   #particles-js {
     background-image: #fafafa;

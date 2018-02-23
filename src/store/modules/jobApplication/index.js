@@ -47,8 +47,8 @@ const getters = {
     data.apply_for = state.apply_for
     return data
   },
-  getData: state => state.data,
-  getApplyFor: state => state.apply_for
+  data: state => state.data,
+  applyFor: state => state.apply_for
 }
 const mutations = {
   saveData (state, payload) {
