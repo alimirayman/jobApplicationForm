@@ -12,23 +12,9 @@
         <el-input v-model="form.contact_number" placeholder="+8801444444444"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="next">Continue</el-button>
+        <el-button class="button-full" type="primary" @click="next">Continue</el-button>
       </el-form-item>
     </el-form>
-    <!-- <el-upload
-      action="http://159.89.38.56:5202/upload"
-      :on-preview="handlePreview"
-      :on-remove="handleRemove"
-      :before-remove="beforeRemove"
-      :limit="1"
-      ref="upload"
-      :before-upload="beforeUpload"
-      :on-success="fileUploadSuccess"
-      :file-list="fileList"
-      :auto-upload="false">
-      <el-button size="small" type="primary" slot="trigger">Click to upload</el-button>
-      <el-button size="small" type="success" @click="submitUpload">Send to Server</el-button>
-    </el-upload> -->
   </div>
 </template>
 
