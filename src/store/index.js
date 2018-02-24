@@ -14,10 +14,13 @@ const getters = {
 }
 const mutations = {
   nextStep (state) {
-    if (++state.step > 3) state.step = 3
+    if (++state.step > 4) state.step = 4
   },
   prevStep (state) {
     if (--state.step < 0) state.step = 0
+  },
+  resetStep (state) {
+    state.step = 0
   }
 }
 const actions = {

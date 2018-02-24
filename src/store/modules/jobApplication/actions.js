@@ -1,10 +1,19 @@
 import axios from 'axios'
 import { APPLICANT } from '../../../api'
+import { Message } from 'element-ui'
 
 const actions = {
-  async APPLY ({ getters }) {
-    let { data } = await axios.post(APPLICANT, getters.applicant)
+  async APPLY ({ getters, commit }) {
+    let data = await axios.post(APPLICANT, getters.applicant)
     console.log(data)
+    commit('nextStep')
+    Message.success({
+      message: 'Congrats, Your Application has been submitted.'
+    })
+    setTimeout(() => {
+      commit('resetStep')
+      commit('resetApplicant')
+    }, 2000)
   },
   SAVE_DATA ({commit}, payload) {
     commit('saveData', payload)
