@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-steps :active="step" align-center finish-status="success">
-      <el-step title="Personal Info."></el-step>
+      <el-step title="Basic"></el-step>
       <el-step title="Experience"></el-step>
       <el-step title="Portfolio"></el-step>
       <el-step title="CV"></el-step>
