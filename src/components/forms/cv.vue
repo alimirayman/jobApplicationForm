@@ -2,18 +2,26 @@
   <div>
     <h2>CV</h2>
     <el-form :model="form">
-      <el-form-item label="Full Name">
-        <el-input v-model="form.name" placeholder="Mir Ayman Ali"></el-input>
+      <el-form-item label="Upload CV">
+        <el-upload
+          action="http://159.89.38.56:5202/upload"
+          :multiple="false"
+          :limit="1"
+          :before-upload="beforeUpload"
+          :on-success="fileUploadSuccess"
+          class="button-mid">
+          <el-button class="button-full" type="primary" slot="trigger">
+            Add CV
+            <i class="el-icon-circle-plus-outline el-icon-right"></i>
+          </el-button>
+        </el-upload>
       </el-form-item>
-      <el-form-item label="Email Address">
-        <el-input v-model="form.email" placeholder="ayman@karigor.io"></el-input>
-      </el-form-item>
-      <el-form-item label="Contact Number">
-        <el-input v-model="form.contact_number" placeholder="+8801444444444"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="prev">Previous</el-button>
-        <el-button type="primary" @click="next">Continue</el-button>
+      <el-form-item label="File Name" v-if="form.fileName">
+          <el-input v-model="form.fileName" disabled></el-input>
+        </el-form-item>
+      <el-form-item class="text-center">
+        <el-button type="info" @click="prev">Previous</el-button>
+        <el-button class="button-mid" type="success" @click="next">Submit</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -23,35 +31,30 @@
 import { mapActions } from 'vuex'
 
 export default {
-  data () {
-    return {
-      fileList: [],
-      form: {
-        name: '',
-        email: '',
-        contact_number: ''
-      }
+  computed: {
+    form () {
+      return this.$store.getters.cv
     }
   },
   methods: {
     ...mapActions({
-      saveData: 'SAVE_DATA',
+      saveData: 'SAVE_CV',
+      apply: 'APPLY',
       nextStep: 'NEXT_STEP',
       prevStep: 'PREV_STEP'
     }),
     next () {
       this.saveData(this.form)
-      this.nextStep()
+      this.apply()
+      // this.$message({
+      //   showClose: true,
+      //   message: 'Congrats, Your Application has been submitted.',
+      //   type: 'success'
+      // })
     },
     prev () {
-      // this.saveData(this.form)
+      this.saveData(this.form)
       this.prevStep()
-    },
-    handlePreview () {
-      console.log('handlePreview')
-    },
-    handleRemove () {
-      console.log('handleRemove')
     },
     beforeUpload (file) {
       if ((file.size / 1024) / 1024 > 200) {
@@ -59,20 +62,12 @@ export default {
         return false
       }
     },
-    beforeRemove () {
-      console.log('beforeRemove')
-    },
     fileUploadSuccess (res, file, fileList) {
-      console.log(res.url)
-      this.fileList = fileList
+      this.form.cv_link = res.url
+      this.form.fileName = file.name
     },
     submitUpload () {
       this.$refs.upload.submit()
-    }
-  },
-  watch: {
-    fileList (val) {
-      console.log(this.fileList)
     }
   }
 }
