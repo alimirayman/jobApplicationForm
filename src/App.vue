@@ -11,8 +11,8 @@
       </vue-particles>
       <router-view/>
       <el-footer>
-        <div class="powered-by">
-          Powered By, <a href="https::/karigor.io" class="company">Karigor</a>
+        <div class="powered-by font-bold">
+          Powered By, <a href="https://karigor.io/" class="company">Karigor</a>
         </div>
       </el-footer>
     </el-container>
@@ -77,8 +77,11 @@ export default {
   .powered-by{
     position: fixed;
     color: #ffffff;
-    bottom: 10px;
-    right: 10px;
+    bottom: 16px;
+    right: 16px;
+  }
+  .company {
+    color: #f5f5f5;
   }
   .text-center{
     text-align: center;
@@ -86,13 +89,46 @@ export default {
   .font-bold{
     font-weight: bold;
   }
-  .font-lg{
-    font-size: 2rem;
-  }
-  .font-md{
-    font-size: 1rem;
+  @media screen and (min-width: 768px) {
+    .font-lg{
+      font-size: 2rem;
+    }
+    .font-md{
+      font-size: 1rem;
+    }
   }
   .mb-1{
     margin-bottom: 1rem;
+  }
+  .mt-1{
+    margin-top: 1rem;
+  }
+  .button-small {
+    min-width: 33%;
+  }
+  .button-half {
+    min-width: 50%;
+  }
+  .button-mid {
+    min-width: 65%;
+  }
+  .button-full {
+    min-width: 100%;
+  }
+  .el-form{
+    max-width: 20em;
+    margin: 0 auto;
+    text-align: right
+  }
+  .el-upload{
+    min-width: 65%;
+  }
+  @media screen and (max-width: 768px) {
+    .button-mid {
+      min-width: 60%;
+    }
+    .el-upload{
+      min-width: 60%;
+    }
   }
 </style>

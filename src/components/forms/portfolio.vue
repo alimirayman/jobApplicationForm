@@ -7,18 +7,19 @@
         <el-form-item label="Upload">
           <el-upload
             action="http://159.89.38.56:5202/upload"
-            :on-preview="handlePreview"
-            :on-remove="handleRemove"
-            :before-remove="beforeRemove"
+            :multiple="false"
             :limit="1"
+            :data="{'id': id}"
             :before-upload="beforeUpload"
-            :on-success="fileUploadSuccess"
-            :file-list="form.fileList">
-            <el-button type="primary" slot="trigger">
+            :on-success="fileUploadSuccess">
+            <el-button type="primary" slot="trigger" class="button-full">
               Add Portfolio
               <i class="el-icon-circle-plus-outline el-icon-right"></i>
             </el-button>
           </el-upload>
+        </el-form-item>
+        <el-form-item label="File Name" v-if="form.fileName">
+          <el-input v-model="form.fileName" disabled></el-input>
         </el-form-item>
         <el-form-item label="Year">
           <el-date-picker
@@ -32,7 +33,7 @@
         </el-form-item>
         <el-form-item class="text-center">
           <el-button
-            class="add-exp-button font-md"
+            class="add-exp-button font-md button-full"
             type="danger"
             icon="el-icon-circle-close-outline"
             @click="remPortfolio(id)">
@@ -42,11 +43,11 @@
       </div>
       </transition-group>
       <el-form-item class="text-center">
-        <el-button class="another-button" icon="el-icon-circle-plus-outline" @click="addPortfolio">Add Another Portfolio</el-button>
+        <el-button class="button-full" icon="el-icon-circle-plus-outline" @click="addPortfolio">Add Another Portfolio</el-button>
       </el-form-item>
       <el-form-item class="text-center">
         <el-button type="info" @click="prev">Previous</el-button>
-        <el-button type="primary" @click="next">Continue</el-button>
+        <el-button class="button-mid" type="primary" @click="next">Continue</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -56,14 +57,9 @@
 import { mapActions } from 'vuex'
 
 export default {
-  data () {
-    return {
-      fileList: [],
-      forms: [{
-        link: '',
-        year: '',
-        skills_used: ''
-      }]
+  computed: {
+    forms () {
+      return this.$store.getters.portfolios
     }
   },
   methods: {
@@ -77,7 +73,7 @@ export default {
       this.nextStep()
     },
     prev () {
-      // this.saveData(this.form)
+      this.saveData(this.forms)
       this.prevStep()
     },
     addPortfolio () {
@@ -102,43 +98,23 @@ export default {
         }
       })
     },
-    handlePreview () {
-      console.log('handlePreview')
-    },
-    handleRemove () {
-      console.log('handleRemove')
-    },
     beforeUpload (file) {
       if ((file.size / 1024) / 1024 > 100) {
         console.log('File too large')
         return false
       }
     },
-    beforeRemove () {
-      console.log('beforeRemove')
-    },
     fileUploadSuccess (res, file, fileList) {
-      // console.log(id)
-      this.fileList.push = res
-    },
-    submitUpload () {
-      this.$refs.upload.submit()
-    }
-  },
-  watch: {
-    fileList (val) {
-      console.log(this.fileList)
+      console.log(file)
+      let id = parseInt(res.id)
+      this.forms[id].link = res.url
+      this.forms[id].fileName = file.name
     }
   }
 }
 </script>
 
 <style scoped>
-.el-form{
-  max-width: 20em;
-  margin: 0 auto;
-  text-align: right
-}
 .portfolio-forms{
   padding-top: 10px;
   border-top: 2px solid #cfcfcf;
@@ -146,8 +122,5 @@ export default {
 .portfolio-forms:first-child{
   padding-top: 0;
   border-top: 0;
-}
-.another-button{
-  min-width: 50%;
 }
 </style>
