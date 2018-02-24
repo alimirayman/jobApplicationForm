@@ -26,11 +26,13 @@ export default {
     return {
       dynamicColor: '',
       colors: [
-        '#01579B',
-        '#006064',
-        '#004D40',
-        '#0D47A1',
-        '#1A237E'
+        // '#006064',
+        // '#004D40',
+        // '#01579B'
+        '#0277BD',
+        '#00838F',
+        '#00695C',
+        '#1565C0'
       ]
     }
   },
@@ -61,7 +63,8 @@ export default {
     font-family: "Raleway",Arial,sans-serif;
   }
   #particles-js {
-    background-color: #01579B;
+    /* background-color: #01579B; */
+    background-color: #1565C0;
     background-blend-mode: overlay;
     background-size: cover;
     position: fixed;
@@ -69,7 +72,6 @@ export default {
     left: 0;
     right: 0;
     bottom: 0;
-    z-index: -1;
     transition: background 2s ease-in-out;
   }
   .powered-by{

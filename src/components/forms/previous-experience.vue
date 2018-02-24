@@ -25,7 +25,8 @@
             <el-date-picker
               v-model="form.to_year"
               type="date"
-              placeholder="End date">
+              placeholder="End date"
+              v-if="!form.currently_working">
             </el-date-picker>
             <el-switch
               v-model="form.currently_working"

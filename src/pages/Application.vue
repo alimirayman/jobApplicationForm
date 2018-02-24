@@ -57,11 +57,14 @@ export default {
 </script>
 
 <style scoped>
-.el-main{
+.el-main {
   min-height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.el-card {
+  background-color: #ECEFF1;
 }
 .checkButton {
   width: 100%
