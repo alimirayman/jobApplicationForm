@@ -7,6 +7,10 @@ const routes = [
     path: '/',
     name: 'Job-Application-Form',
     component: load('Application')
+  },
+  {
+    path: '*',
+    component: load('Page404')
   }
 ]
 
