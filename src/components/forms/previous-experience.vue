@@ -5,39 +5,49 @@
       <transition-group name="el-zoom-in-top">
         <div class="experience-forms" v-for="(form, id) in forms" :key="id">
           <el-form-item label="Job Place">
-            <el-input v-model="form.name" placeholder="Google Inc"></el-input>
+            <el-input v-model="form.title" placeholder="Google Inc"></el-input>
           </el-form-item>
           <el-form-item label="Skills Earned">
             <el-input v-model="form.skills_earned" placeholder="Vue, Java, PhotoShop"></el-input>
           </el-form-item>
-          <el-form-item label="Descreaption">
-            <el-input v-model="form.descreaption" placeholder="I worked on..."></el-input>
+          <el-form-item label="Description">
+            <el-input v-model="form.description" placeholder="I worked on..."></el-input>
           </el-form-item>
           <el-form-item label="Refference Link">
             <el-input v-model="form.reference_link" placeholder="https://developers.google.com/ayman"></el-input>
           </el-form-item>
           <el-form-item label="Job Timespan">
-            <el-date-picker
-              v-model="form.from_year"
-              type="date"
-              placeholder="Start date">
-            </el-date-picker>
-            <el-date-picker
-              v-model="form.to_year"
-              type="date"
-              placeholder="End date"
-              v-if="!form.currently_working">
-            </el-date-picker>
-            <el-switch
-              v-model="form.currently_working"
-              active-color="#13ce66"
-              inactive-color="#ff4949"
-              active-text="Currently Working">
-            </el-switch>
+            <el-row>
+              <el-col :span="24">
+                <el-date-picker
+                  class="button-full"
+                  v-model="form.from_year"
+                  type="date"
+                  placeholder="Start date">
+                </el-date-picker>
+              </el-col>
+              <el-col :span="24">
+                <el-date-picker
+                  class="button-full mt-1"
+                  v-model="form.to_year"
+                  type="date"
+                  placeholder="End date"
+                  v-if="!form.currently_working">
+                </el-date-picker>
+              </el-col>
+              <el-col :span="24" class="text-center">
+                <el-switch
+                  v-model="form.currently_working"
+                  active-color="#13ce66"
+                  inactive-color="#ff4949"
+                  active-text="Currently Working">
+                </el-switch>
+              </el-col>
+            </el-row>
           </el-form-item>
           <el-form-item>
             <el-button
-              class="add-exp-button font-md"
+              class="button-full mb-1 font-md"
               type="danger"
               icon="el-icon-circle-close-outline"
               @click="remExperience(id)">
@@ -46,12 +56,12 @@
           </el-form-item>
         </div>
       </transition-group>
-      <el-button class="add-exp-button font-md" @click="addExperience" icon="el-icon-circle-plus-outline">
+      <el-button class="font-md button-full mb-1" @click="addExperience" icon="el-icon-circle-plus-outline">
         Add Experience
       </el-button>
       <el-form-item>
         <el-button type="info" @click="prev">Previous</el-button>
-        <el-button type="primary" @click="next">Continue</el-button>
+        <el-button class="button-mid" type="primary" @click="next">Continue</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -146,9 +156,5 @@ export default {
 .experience-forms:first-child{
   padding-top: 0;
   border-top: 0;
-}
-.add-exp-button{
-  min-width: 50%;
-  margin-bottom: 20px;
 }
 </style>
