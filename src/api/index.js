@@ -1,4 +1,4 @@
-const root = 'http://46.101.40.52:5203'
+const root = 'http://103.216.56.252:5203'
 const api = root + '/'
 // Login
 export const LOGIN = api + 'admin/login'
