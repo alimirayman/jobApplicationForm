@@ -4,9 +4,9 @@
       <el-row type="flex" justify="center">
         <el-col :xs="24" :sm="22" :md="16" :xl="12">
           <el-card class="box-card text-center">
-            <h1 class="font-lg font-bold">Apply<span v-if="selected">ing</span> for</h1>
-            <el-row type="flex" justify="center" :gutter="20" class="row-bg">
-              <el-col :md="11" v-for="(apply, id) in applyFor" :key="id">
+            <h1 class="font-lg font-bold">Apply<span v-if="selected">ing</span> For</h1>
+            <el-row :gutter="20" class="row-bg">
+              <el-col :xs="24" :sm="12" v-for="(apply, id) in applyFor" :key="id">
                 <el-button class="checkButton font-md font-bold" @click="selectType(id)" :type="checkType(apply.check)">
                   {{ apply.name }}
                   <i class="el-icon-success el-icon-right" v-if="apply.check"></i>
@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     checkType (check) {
-      return check ? 'success' : 'primary'
+      return check ? 'success' : 'info'
     },
     selectType (id) {
       this.applyFor[id].check = !this.applyFor[id].check
@@ -64,10 +64,11 @@ export default {
   justify-content: center;
 }
 .el-card {
-  background-color: #ECEFF1;
+  background-color: #F5F5F5;
 }
 .checkButton {
-  width: 100%
+  width: 100%;
+  margin-bottom: 0.78rem;
 }
 .el-row{
   margin: 20px 0;
