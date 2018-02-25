@@ -12,7 +12,7 @@
       <router-view/>
       <el-footer>
         <div class="powered-by font-bold">
-          Powered By, <a href="https://karigor.io/" class="company">Karigor</a>
+          Powered By, <a href="https://karigor.io/" target="_blank">Karigor</a>
         </div>
       </el-footer>
     </el-container>
@@ -80,7 +80,7 @@ export default {
     bottom: 16px;
     right: 16px;
   }
-  .company {
+  .powered-by a, .curious a {
     color: #f5f5f5;
   }
   .text-center{
@@ -114,6 +114,15 @@ export default {
   }
   .button-full {
     min-width: 100%;
+  }
+  .el-main {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .el-card {
+    background-color: #F5F5F5;
   }
   .el-form{
     max-width: 20em;
