@@ -6,7 +6,7 @@
         label="Upload CV"
         prop="cv_link"
         :rules="[
-          { required: true, message: 'Please upload your cv', trigger: 'blur' }
+          { required: true, message: 'Please upload your cv', trigger: 'blur,change' }
         ]">
         <el-upload
           action="http://159.89.38.56:5202/upload"
@@ -14,6 +14,7 @@
           :limit="1"
           :before-upload="beforeUpload"
           :on-success="fileUploadSuccess"
+          :on-change="validate"
           class="button-mid">
           <el-button class="button-full" type="primary" slot="trigger">
             Add CV
@@ -61,7 +62,6 @@ export default {
           this.apply()
           this.loading = false
         } else {
-          console.log('error submit!!')
           this.loading = false
           return false
         }
@@ -84,6 +84,9 @@ export default {
     fileUploadSuccess (res, file, fileList) {
       this.form.cv_link = res.url
       this.form.fileName = file.name
+    },
+    validate () {
+      this.$refs['ruleForm'].validate((val) => {})
     }
   }
 }
