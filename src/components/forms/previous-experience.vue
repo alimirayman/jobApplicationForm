@@ -56,9 +56,11 @@
           </el-form-item>
         </div>
       </transition-group>
-      <el-button class="font-md button-full mb-1" @click="addExperience" icon="el-icon-circle-plus-outline">
-        Add Experience
-      </el-button>
+      <el-form-item>
+        <el-button class="font-md button-full mb-1" @click="addExperience" icon="el-icon-circle-plus-outline">
+          Add Experience
+        </el-button>
+      </el-form-item>
       <el-form-item>
         <el-button type="info" @click="prev">Previous</el-button>
         <el-button class="button-mid" type="primary" @click="next">Continue</el-button>
