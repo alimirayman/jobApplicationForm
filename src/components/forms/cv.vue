@@ -58,10 +58,8 @@ export default {
       await this.saveData(this.form)
       this.$refs['ruleForm'].validate((valid) => {
         if (valid) {
-          setTimeout(() => {
-            this.apply()
-            this.loading = false
-          }, 2000)
+          this.apply()
+          this.loading = false
         } else {
           console.log('error submit!!')
           this.loading = false
