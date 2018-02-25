@@ -16,7 +16,13 @@ const actions = {
     }, 2000)
   },
   SAVE_DATA ({commit}, payload) {
-    commit('saveData', payload)
+    if (!(payload.name === '' || typeof payload.name === 'undefined') &&
+        !(payload.email === '' || typeof payload.email === 'undefined') &&
+        !(payload.contact_number === '' || typeof payload.contact_number === 'undefined')) {
+      console.log(payload)
+      commit('saveData', payload)
+      commit('nextStep')
+    }
   },
   SAVE_APPLY_FOR ({commit}, payload) {
     commit('saveApplyFor', payload)
