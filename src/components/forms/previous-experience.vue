@@ -116,33 +116,6 @@ export default {
           }
         }
       })
-    },
-    handlePreview () {
-      console.log('handlePreview')
-    },
-    handleRemove () {
-      console.log('handleRemove')
-    },
-    beforeUpload (file) {
-      if ((file.size / 1024) / 1024 > 200) {
-        console.log('File too large')
-        return false
-      }
-    },
-    beforeRemove () {
-      console.log('beforeRemove')
-    },
-    fileUploadSuccess (res, file, fileList) {
-      console.log(res.url)
-      this.fileList = fileList
-    },
-    submitUpload () {
-      this.$refs.upload.submit()
-    }
-  },
-  watch: {
-    fileList (val) {
-      console.log(this.fileList)
     }
   }
 }

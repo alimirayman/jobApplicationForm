@@ -6,7 +6,7 @@ const actions = {
   async APPLY ({ getters, commit }) {
     try {
       let { data } = await axios.post(APPLICANT, getters.applicant)
-      console.log(data)
+      commit('saveData', data)
       commit('nextStep')
       Message.success({
         message: 'Congrats, Your Application has been submitted. Check your email for confirmation. You might need to check your spam email',
@@ -28,7 +28,6 @@ const actions = {
     if (!(payload.name === '' || typeof payload.name === 'undefined') &&
         !(payload.email === '' || typeof payload.email === 'undefined') &&
         !(payload.contact_number === '' || typeof payload.contact_number === 'undefined')) {
-      console.log(payload)
       commit('saveData', payload)
       commit('nextStep')
     }

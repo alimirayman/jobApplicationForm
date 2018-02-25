@@ -26,9 +26,6 @@ export default {
     return {
       dynamicColor: '',
       colors: [
-        // '#006064',
-        // '#004D40',
-        // '#01579B'
         '#0277BD',
         '#00838F',
         '#00695C',
@@ -63,7 +60,6 @@ export default {
     font-family: "Raleway",Arial,sans-serif;
   }
   #particles-js {
-    /* background-color: #01579B; */
     background-color: #1565C0;
     background-blend-mode: overlay;
     background-size: cover;

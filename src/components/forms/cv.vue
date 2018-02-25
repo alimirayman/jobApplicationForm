@@ -86,9 +86,6 @@ export default {
     fileUploadSuccess (res, file, fileList) {
       this.form.cv_link = res.url
       this.form.fileName = file.name
-    },
-    submitUpload () {
-      this.$refs.upload.submit()
     }
   }
 }
