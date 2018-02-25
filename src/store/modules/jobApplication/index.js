@@ -1,26 +1,31 @@
 import actions from './actions'
 
-const state = {
-  data: {},
-  cv: {
-    cv_link: ''
-  },
-  apply_for: [
-    {
-      name: 'Front End Developer',
-      check: false
+const state = () => {
+  return {
+    data: {},
+    cv: {
+      cv_link: ''
     },
-    {
-      name: 'UX/UI Designer',
-      check: false
-    }
-  ],
-  portfolio: [],
-  previous_jobs: []
+    apply_for: [
+      {
+        name: 'Front End Developer',
+        check: false
+      },
+      {
+        name: 'UX/UI Designer',
+        check: false
+      }
+    ],
+    portfolio: [],
+    previous_jobs: []
+  }
 }
 const getters = {
   applicant (state) {
-    let data = state.data
+    let data = {}
+    data.name = state.data.name
+    data.email = state.data.email
+    data.contact_number = state.data.contact_number
     data.cv_link = state.cv.cv_link
     data.portfolio = state.portfolio
     data.previous_jobs = state.previous_jobs
