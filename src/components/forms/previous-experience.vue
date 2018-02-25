@@ -90,16 +90,16 @@ export default {
     },
     addExperience () {
       let exp = {
-        name: '',
+        title: '',
         from_year: '',
         to_year: '',
         currently_working: true,
         skills_earned: '',
-        descreaption: '',
+        description: '',
         reference_link: ''
       }
       let ind = this.forms.length - 1
-      if (ind === -1 || !(this.forms[ind].name === '')) {
+      if (ind === -1 || !(this.forms[ind].title === '')) {
         this.forms.push(exp)
       }
     },
