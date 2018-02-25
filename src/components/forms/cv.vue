@@ -75,7 +75,11 @@ export default {
     },
     beforeUpload (file) {
       if ((file.size / 1024) / 1024 > 200) {
-        console.log('File too large')
+        this.$message({
+          message: 'File Too large',
+          showClose: true,
+          type: 'error'
+        })
         return false
       }
     },
