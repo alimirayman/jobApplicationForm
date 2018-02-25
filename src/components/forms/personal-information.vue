@@ -1,7 +1,7 @@
 <template>
   <div>
     <h2>Personal Information</h2>
-    <el-form :model="form">
+    <el-form :model="form" ref="ruleForm">
       <el-form-item
         label="Full Name"
         prop="name"
@@ -18,7 +18,7 @@
         prop="email"
         :rules="[
           { required: true, message: 'Please input email address', trigger: 'blur' },
-          { type: 'email', message: 'Please input correct email address', trigger: 'blur,change' }
+          { type: 'email', message: 'Please input correct email address', trigger: 'blur' }
         ]">
         <el-input
           v-model="form.email"
@@ -31,7 +31,7 @@
         :rules="[
           { required: true, message: 'Please input contact number', trigger: 'blur' },
         ]">
-        <el-input v-model="form.contact_number" placeholder="+8801444444444" required></el-input>
+        <el-input type="tel" v-model="form.contact_number" placeholder="+8801444444444"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button class="button-full" type="primary" @click="next">Continue</el-button>
@@ -53,7 +53,14 @@ export default {
       nextStep: 'NEXT_STEP'
     }),
     next () {
-      this.saveData(this.form)
+      this.$refs['ruleForm'].validate((valid) => {
+        if (valid) {
+          this.saveData(this.form)
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     },
     handlePreview () {
       console.log('handlePreview')

@@ -1,8 +1,13 @@
 <template>
   <div>
     <h2>CV</h2>
-    <el-form :model="form">
-      <el-form-item label="Upload CV">
+    <el-form :model="form" ref="ruleForm">
+      <el-form-item
+        label="Upload CV"
+        prop="cv_link"
+        :rules="[
+          { required: true, message: 'Please upload your cv', trigger: 'blur' }
+        ]">
         <el-upload
           action="http://159.89.38.56:5202/upload"
           :multiple="false"
@@ -17,11 +22,11 @@
         </el-upload>
       </el-form-item>
       <el-form-item label="File Name" v-if="form.fileName">
-          <el-input v-model="form.fileName" disabled></el-input>
-        </el-form-item>
+        <el-input v-model="form.fileName" disabled></el-input>
+      </el-form-item>
       <el-form-item class="text-center">
         <el-button type="info" @click="prev">Previous</el-button>
-        <el-button class="button-mid" type="success" @click="next">Submit</el-button>
+        <el-button class="button-mid" type="success" @click="next" :loading="loading">Submit<span v-if="loading">ting</span> </el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -31,6 +36,11 @@
 import { mapActions } from 'vuex'
 
 export default {
+  data () {
+    return {
+      loading: false
+    }
+  },
   computed: {
     form () {
       return this.$store.getters.cv
@@ -43,14 +53,21 @@ export default {
       nextStep: 'NEXT_STEP',
       prevStep: 'PREV_STEP'
     }),
-    next () {
-      this.saveData(this.form)
-      this.apply()
-      // this.$message({
-      //   showClose: true,
-      //   message: 'Congrats, Your Application has been submitted.',
-      //   type: 'success'
-      // })
+    async next () {
+      this.loading = true
+      await this.saveData(this.form)
+      this.$refs['ruleForm'].validate((valid) => {
+        if (valid) {
+          setTimeout(() => {
+            this.apply()
+            this.loading = false
+          }, 2000)
+        } else {
+          console.log('error submit!!')
+          this.loading = false
+          return false
+        }
+      })
     },
     prev () {
       this.saveData(this.form)
