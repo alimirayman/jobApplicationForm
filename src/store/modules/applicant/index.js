@@ -35,6 +35,15 @@ const actions = {
       console.log(err)
       commit('logout')
     }
+  },
+  async DELETE_APPLICANT ({ commit }, payload) {
+    try {
+      let { data } = await http.delete(APPLICANT + '/' + payload.id)
+      console.log(data)
+    } catch (err) {
+      console.log(err)
+      commit('logout')
+    }
   }
 }
 
