@@ -3,25 +3,22 @@ import { LOGIN } from '../../../api'
 
 const state = {
   user: {
-    name: '',
-    password: '',
     token: ''
   }
 }
 
 const getters = {
-  token: state => state.user.token,
-  loginData (state) {
-    let data = {}
-    data.email = state.user.name
-    data.password = state.user.password
-  }
+  token: state => state.user.token
 }
 
 const mutations = {
   login (state, payload) {
     state.user.token = payload.token
     localStorage.setItem('token', payload.token)
+  },
+  logout (state, payload) {
+    state.user.token = ''
+    localStorage.removeItem('token')
   }
 }
 
@@ -32,6 +29,7 @@ const actions = {
       commit('login', data)
     } catch (err) {
       console.log(err)
+      commit('logout')
     }
   }
 }
