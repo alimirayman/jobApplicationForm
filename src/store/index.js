@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 // Module imports
 import application from './modules/jobApplication'
 import auth from './modules/auth'
+import applicant from './modules/applicant'
 
 Vue.use(Vuex)
 
@@ -34,7 +35,8 @@ const actions = {
 }
 const modules = {
   application,
-  auth
+  auth,
+  applicant
 }
 
 const store = new Vuex.Store({
