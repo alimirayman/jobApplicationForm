@@ -1,25 +1,19 @@
 <template>
   <div>
-    <el-main>
-      <el-row type="flex" justify="center">
-        <el-col :xs="24" :sm="22" :md="16" :xl="12">
-          <el-card class="box-card text-center">
-            <h1 class="font-lg font-bold">Apply<span v-if="selected">ing</span> For</h1>
-            <el-row :gutter="20" class="row-bg">
-              <el-col :xs="24" :sm="12" v-for="(apply, id) in applyFor" :key="id">
-                <el-button class="checkButton font-md font-bold" @click="selectType(id)" :type="checkType(apply.check)">
-                  {{ apply.name }}
-                  <i class="el-icon-success el-icon-right" v-if="apply.check"></i>
-                </el-button>
-              </el-col>
-            </el-row>
-            <transition name="el-zoom-in-top">
-              <applicant-form v-if="selected"></applicant-form>
-            </transition>
-          </el-card>
+    <el-card class="box-card text-center">
+      <h1 class="font-lg font-bold">Apply<span v-if="selected">ing</span> For</h1>
+      <el-row :gutter="20" class="row-bg">
+        <el-col :xs="24" :sm="12" v-for="(apply, id) in applyFor" :key="id">
+          <el-button class="checkButton font-md font-bold" @click="selectType(id)" :type="checkType(apply.check)">
+            {{ apply.name }}
+            <i class="el-icon-success el-icon-right" v-if="apply.check"></i>
+          </el-button>
         </el-col>
       </el-row>
-    </el-main>
+      <transition name="el-zoom-in-top">
+        <applicant-form v-if="selected"></applicant-form>
+      </transition>
+    </el-card>
   </div>
 </template>
 

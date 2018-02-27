@@ -9,7 +9,13 @@
         :style="dynamicBackground"
         >
       </vue-particles>
-      <router-view/>
+      <el-main>
+        <el-row type="flex" justify="center">
+          <el-col :xs="24" :sm="22" :md="16" :xl="12">
+            <router-view/>
+          </el-col>
+        </el-row>
+      </el-main>
       <el-footer>
         <div class="powered-by font-bold">
           Powered By, <a href="https://karigor.io/" target="_blank">Karigor</a>
