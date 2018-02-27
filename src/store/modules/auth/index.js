@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { LOGIN } from '../../../api'
+import { LOGIN, LOGOUT } from '../../../api'
 
 const state = {
   user: {
@@ -16,7 +16,7 @@ const mutations = {
     state.user.token = payload.token
     localStorage.setItem('token', payload.token)
   },
-  logout (state, payload) {
+  logout (state) {
     state.user.token = ''
     localStorage.removeItem('token')
   }
@@ -30,6 +30,14 @@ const actions = {
     } catch (err) {
       console.log(err)
       commit('logout')
+    }
+  },
+  async LOGOUT ({commit}) {
+    try {
+      await axios.post(LOGOUT)
+      commit('logout')
+    } catch (err) {
+      console.log(err)
     }
   }
 }

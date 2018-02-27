@@ -38,8 +38,7 @@ const actions = {
   },
   async DELETE_APPLICANT ({ commit }, payload) {
     try {
-      let { data } = await http.delete(APPLICANT + '/' + payload.id)
-      console.log(data)
+      await http.delete(APPLICANT + '/' + payload.id)
     } catch (err) {
       console.log(err)
       commit('logout')

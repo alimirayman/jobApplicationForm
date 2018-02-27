@@ -1,7 +1,8 @@
 const root = 'http://46.101.40.52:5203'
 const api = root + '/'
-// Login
+// Auth
 export const LOGIN = api + 'admin/login'
+export const LOGOUT = api + 'admin/logout'
 // applicant
 export const APPLICANT = api + 'applicant'
 // Upload
