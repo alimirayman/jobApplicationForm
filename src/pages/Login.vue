@@ -33,8 +33,13 @@ export default {
     ...mapActions({
       login: 'LOGIN'
     }),
-    submit () {
-      this.login(this.form)
+    async submit () {
+      try {
+        await this.login(this.form)
+        this.$router.push('/applicant')
+      } catch (error) {
+        console.log(error)
+      }
     }
   }
 }
