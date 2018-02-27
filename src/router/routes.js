@@ -9,6 +9,22 @@ const routes = [
     component: load('Application')
   },
   {
+    path: '/applicant',
+    name: 'Applicants-List',
+    component: load('Applicant')
+  },
+  {
+    path: '/applicant/:id',
+    props: true,
+    name: 'Individual-Applicant',
+    component: load('Applicant/_id')
+  },
+  {
+    path: '/login',
+    name: 'Admin-Login',
+    component: load('Login')
+  },
+  {
     path: '*',
     component: load('Page404')
   }
