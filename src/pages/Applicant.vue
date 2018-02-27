@@ -25,8 +25,7 @@
         label="Operations"
         width="120">
         <template slot-scope="scope">
-          <el-button @click.native.prevent="checkDetails(scope.$index, tableData)" type="text" size="small">Detail</el-button>
-          <el-button type="text" size="small">Delete</el-button>
+          <el-button @click.native.prevent="checkDetails(scope.$index, tableData)" type="text" size="small">Details</el-button>
         </template>
       </el-table-column>
     </el-table>
